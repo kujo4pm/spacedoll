@@ -1122,7 +1122,6 @@
 			var listener_id;
 
 			var listener_function = function(e) {
-
 				var key_time;
 				if (parameters.rt_method == 'date') {
 					key_time = (new Date()).getTime();

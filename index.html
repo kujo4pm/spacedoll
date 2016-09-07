@@ -190,7 +190,6 @@ var alien_1_practice_block = {
 	},
 	timing_post_trial: 0,
 	nrtrials: 5,
-	mouse_friendly: true
 };
 var alien_2_practice_block = {
 	type: "space-doll-alien-stim",
@@ -201,7 +200,6 @@ var alien_2_practice_block = {
 	timing_post_trial: 0,
 	nrtrials: 5,
 	state_name: "p_red",
-	mouse_friendly: true
 };
 
 var rocket_practice_block = {
@@ -214,7 +212,8 @@ var rocket_practice_block = {
 
 var reminder_1_block = {
 	type: "text",
-	text: "<div class='center-content'><br><br>Just as a reminder, pick the spaceships that get you to the purple state.<br><br><img style='margin:0px auto;display:block;height:200px' src='img/purple_planet.png'/><br><br>Press any key to continue.",
+	text: "<div class='center-content'><br><br>Just as a reminder, pick the spaceships that get you to the purple state.<br><br><img style='margin:0px auto;display:block;height:200px' src='img/purple_planet.png'/><br><br>Touch screen to continue.",
+	cont_key: 'mouse'
 };
 var reminder_1_if = {
 	chunk_type: 'if',
@@ -254,7 +253,8 @@ var rocket_1_while_block = {
 
 var reminder_2_block = {
 	type: "text",
-	text: "<div class='center-content'><br><br>Just as a reminder, pick the spaceships that get you to the red state.<br><br><img style='margin:0px auto;display:block;height:200px' src='img/red_planet.png'/><br><br>Press any key to continue.",
+	text: "<div class='center-content'><br><br>Just as a reminder, pick the spaceships that get you to the red state.<br><br><img style='margin:0px auto;display:block;height:200px' src='img/red_planet.png'/><br><br>Touch screen to continue.",
+	cont_key: 'mouse'
 };
 var reminder_2_if = {
 	chunk_type: 'if',
@@ -533,13 +533,13 @@ var end_block = {
 /* create experiment definition array */
 var experiment = [];
 
-/*experiment.push(change_colors);
+experiment.push(change_colors);
 experiment.push(check_id_block);
 experiment.push(consent_block);
 experiment.push(instructions_1a_block);
 experiment.push(alien_1_practice_block);
 experiment.push(instructions_1b_block);
-*/experiment.push(alien_2_practice_block);/*
+experiment.push(alien_2_practice_block);
 experiment.push(instructions_1c_block);
 experiment.push(rocket_1_while_block);
 experiment.push(instructions_1d_block);
@@ -556,7 +556,7 @@ experiment.push(check_demographics_block);
 experiment.push(save_subinfo_block);
 experiment.push(debriefing_block);
 experiment.push(change_colors_back);
-experiment.push(end_block);*/
+experiment.push(end_block);
 
 jsPsych.preloadImages(images, function(){ startExperiment(); });
 

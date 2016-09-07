@@ -75,20 +75,20 @@ var generate_itc_verify_options = function(){
 	}
 	return options
 }
-	
+
 var itc_final_text = function(){
 	if (score < 0) {
 		var instructions = ["<div align=center>You did not earn any bonus payment in this HIT.</div>"];		
 	} else {
-	if (condition == 0) {
-		var instructions = ["<div align=justify>You earned "+score+" points, and therefore $"+soonerreward+" in bonus payment, which you will receive in 1 DAY.</div>",
-		"<div align=center>UPDATE!<br><br>IMPORTANT NEW INFORMATION INCOMING</div>",
-		"<div align=justify>UPDATE: New research shows that traveling through wormholes reduces the quality of space treasure.<br><br>To preserve the quality of the treasure, the carrier spaceship can fly back to earth without using the wormhole in 3 MONTHS.<br><br><br><img style='margin:0px auto;display:block;width:600px' src='img/3months.png'/><br>While this process will take 3 months, the value of the treasure will increase, getting you a bonus payment of $"+largerreward+", instead of $"+soonerreward+".<br><br>However, because of the delayed trip, you would receive the bonus payment of $"+largerreward+" in 3 months.<br><br>It will be up to you to decide whether the carrier should use the wormhole.</div>"];
-	} else {
-		var instructions = ["<div align=justify>You earned "+score+" points, and therefore $"+largerreward+" in bonus payment, which you will receive in 3 MONTHS.</div>",
-		"<div align=center>UPDATE!<br><br>IMPORTANT NEW INFORMATION INCOMING</div>",
-		"<div align=justify>UPDATE: It turns out that there is a wormhole nearby the base planet, which lets the carrier spaceship transport your treasure back to earth TODAY.<br><br><br><img style='margin:0px auto;display:block;width:600px' src='img/today.png'/><br>Research shows that this form of travel will reduce the quality of treasure, getting you a bonus payment of $"+soonerreward+", instead of $"+largerreward+".<br><br>However, you would receive the bonus payment of $"+soonerreward+" TODAY.<br><br>It will be up to you to decide whether the carrier should use the wormhole.</div>"];
-	}
+		if (condition == 0) {
+			var instructions = ["<div align=justify>You earned "+score+" points, and therefore $"+soonerreward+" in bonus payment, which you will receive in 1 DAY.</div>",
+			"<div align=center>UPDATE!<br><br>IMPORTANT NEW INFORMATION INCOMING</div>",
+			"<div align=justify>UPDATE: New research shows that traveling through wormholes reduces the quality of space treasure.<br><br>To preserve the quality of the treasure, the carrier spaceship can fly back to earth without using the wormhole in 3 MONTHS.<br><br><br><img style='margin:0px auto;display:block;width:600px' src='img/3months.png'/><br>While this process will take 3 months, the value of the treasure will increase, getting you a bonus payment of $"+largerreward+", instead of $"+soonerreward+".<br><br>However, because of the delayed trip, you would receive the bonus payment of $"+largerreward+" in 3 months.<br><br>It will be up to you to decide whether the carrier should use the wormhole.</div>"];
+		} else {
+			var instructions = ["<div align=justify>You earned "+score+" points, and therefore $"+largerreward+" in bonus payment, which you will receive in 3 MONTHS.</div>",
+			"<div align=center>UPDATE!<br><br>IMPORTANT NEW INFORMATION INCOMING</div>",
+			"<div align=justify>UPDATE: It turns out that there is a wormhole nearby the base planet, which lets the carrier spaceship transport your treasure back to earth TODAY.<br><br><br><img style='margin:0px auto;display:block;width:600px' src='img/today.png'/><br>Research shows that this form of travel will reduce the quality of treasure, getting you a bonus payment of $"+soonerreward+", instead of $"+largerreward+".<br><br>However, you would receive the bonus payment of $"+soonerreward+" TODAY.<br><br>It will be up to you to decide whether the carrier should use the wormhole.</div>"];
+		}
 	}
 	return instructions
 }
@@ -126,7 +126,7 @@ function gaussRandom() {
 
 function shuffle(o){
 	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-	return o;
+		return o;
 }
 
 var images = ['img/antimatter_0.png',
@@ -182,20 +182,20 @@ var images = ['img/antimatter_0.png',
 
 function save_data(data,table_name){
 	
-for (i = 0; i < data.length; i++) {
-	delete data[i].internal_chunk_id;
-	delete data[i].trial_index_global;
-	delete data[i].trial_type;
+	for (i = 0; i < data.length; i++) {
+		delete data[i].internal_chunk_id;
+		delete data[i].trial_index_global;
+		delete data[i].trial_type;
 	/*if (table_name == "space_mult_subinfo") {
 		delete data[i].key_press;
 		delete data[i].rt;
 		delete data[i].trial_index;
-		}*/
-	}
-		
-	$.ajax({
-		type:'post',
-		cache: false,
+	}*/
+}
+
+$.ajax({
+	type:'post',
+	cache: false,
 		url: 'savedata.php', // change this to point to your php file.
 		// opt_data is to add additional values to every row, like a subject ID
 		// replace 'key' with the column name, and 'value' with the value.
@@ -212,11 +212,23 @@ for (i = 0; i < data.length; i++) {
 
 function getQueryVariable(variable)
 {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
+	var query = window.location.search.substring(1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if(pair[0] == variable){return pair[1];}
+	}
+	return(false);
+}
+
+var fake_keyboard_trigger =  function(key)
+{
+	return function(e){
+		var keydown = jQuery.Event("keydown");
+		keydown.which = jsPsych.pluginAPI.convertKeyCharacterToKeyCode(key);
+		$(document).trigger(keydown);
+		var keyup = jQuery.Event("keyup");
+		keyup.which = jsPsych.pluginAPI.convertKeyCharacterToKeyCode(key);
+		$(document).trigger(keyup);
+	}
 }

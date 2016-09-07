@@ -367,6 +367,9 @@
 				}
 								
 				if(JSON.stringify(choices) != JSON.stringify(["none"])) {
+					$('#jspsych-space-doll-bottom-stim-left').on('click', fake_keyboard_trigger('F'));
+					$('#jspsych-space-doll-bottom-stim-right').on('click', fake_keyboard_trigger('J'));
+					$('#jspsych-space-doll-bottom-stim-middle').on('click', fake_keyboard_trigger('space'));
 					var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
 						callback_function: after_response,
 						valid_responses: choices,
@@ -385,6 +388,9 @@
 			}
 			
 			var kill_listeners = function(){
+				$('#jspsych-space-doll-bottom-stim-left').off('click');
+				$('#jspsych-space-doll-bottom-stim-right').off('click');
+				$('#jspsych-space-doll-bottom-stim-middle').off('click');
 				// kill keyboard listeners
 				if(typeof keyboardListener !== 'undefined'){
 					jsPsych.pluginAPI.cancelAllKeyboardResponses();
